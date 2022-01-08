@@ -1,0 +1,90 @@
+:root {
+  --background-color1: hsl(0 0% 90%);
+  --background-color2: hsl(0 0% 100%);
+
+  --text-color: hsl(0 0% 20%);
+
+  --story-size: 10ch;
+  --gap: 2rem;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-block-size: 100vh;
+  padding: var(--gap);
+
+  display: grid;
+  place-content: center;
+  background-color: var(--background-color1);
+  color: var(--text-color);
+  font-family: system-ui, sans-serif;
+}
+
+.stories {
+  border: 1px solid hsl(0 0% 80%);
+  border-radius: 3px;
+  background-color: var(--background-color2);
+  padding: var(--gap);
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline-start: var(--gap);
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--story-size);
+  gap: var(--gap);
+}
+
+.stories .figure {
+  scroll-snap-align: start;
+  margin: 0;
+
+  display: grid;
+  gap: 1ex;
+  cursor: pointer;
+  user-select: none;
+}
+
+.figure .picture {
+  inline-size: var(--story-size);
+  block-size: var(--story-size);
+
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(hsl(0 0% 0% / 15%) 60%, transparent 61%),
+    radial-gradient(white 65%, transparent 67%),
+    linear-gradient(to top right, orange, deeppink);
+
+  transition: transform .2s ease-in-out;
+}
+
+.figure .picture:hover {
+  transform: scale(1.1);
+} 
+
+.picture .img {
+  inline-size: 100%;
+  block-size: 100%;
+
+  display: block;
+  object-fit: cover;
+  clip-path: circle(42%);
+}
+
+.figure figcaption {
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
